@@ -1,5 +1,5 @@
 {
-  "name": "key_minder",
+  "name": "keyMinder",
   "version": "0.0.1",
   "author": "VeridicalCode",
   "license": "GPLV3",
@@ -8,7 +8,7 @@
     "start": "node server.js"
   },
   "dependencies": {
-    "eris": "^0.7.2"
+    "discord.js": "^13.6.0"
   },
   "engines": {
     "node": "8.x"

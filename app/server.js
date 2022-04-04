@@ -1,36 +1,62 @@
 // discord library
-const Eris = require('eris');
+const Discord = require('discord.js');
 // which bot is our bot?
-const bot = new Eris(process.env.TOKEN, {
-  intents: [] // this is either empty or 0 based on bot settings
-});
+const bot = new Discord.Client();
+const prefix = '!';
 
 // debug check
-bot.on('ready', () => {
+bot.once('ready', () => {
     console.log('Ready!');
 });
 
 // ==== chat interaction ====
 
 // pingpong test
-bot.on('messageCreate', (msg) => {
-  // msg object has .content (string) which is the actual text string
-  // .channel which is where msg was posted, which has its own properties
-  // .author which is the user, also an object with many properties
-    if(msg.content === '!ping') {
-        bot.createMessage(msg.channel.id, 'pong!');
-        console.log('pinged by ', msg.author.username);
-    }
+bot.on('message', msg => {
+  // msg is an object, props include .channel, 
+  if(msg.content === '!ping') {
+    msg.channel.send('Pong.');
+  }
 });
 
-// add key
+// parse chat commands
+bot.on('message', msg => {
+  // ignore self and anything that isn't a command
+  if(!msg.content.startsWith(prefix)
+  || msg.author.bot) {
+    return;
+  }
+  // trim message string into an array of arguments
+  const args = msg.content.slice(prefix.length).trim().split(' ');
+  const argsArray = args.shift().toLowerCase();
 
-// list keys
+  // no arguments
+  if (argsArray === prefix){
+    return msg.channel.send(`KeyMinder: \n"add [character] [key]" to add a key`);
+  };
 
-// return random key by player
+  // add keys
+  else if (argsArray[0] = 'add'){
 
-// return random key by character
+  };
+
+  // list keys
+  else if (argsArray[0] = 'list'){
+
+  };
+  // return random key by players
+  else if (argsArray[0] = 'player-keys'){
+
+  };
+
+  // return random key by characters
+  else if (argsArray[0] = 'character-keys'){
+
+  };
+
+});
+
 
 
 // now actually connect to disc server
-bot.connect();
+bot.login(process.env.TOKEN);
