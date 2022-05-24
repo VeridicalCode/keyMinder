@@ -40,6 +40,9 @@ bot.on('message', msg => {
 
     case `character-keys` :
       return msg.channel.send(`Keyminder found key [key] for [characters]`);
+    
+/*    case `find-key` : scope creep goal, search on Plaguefall to get everyone with a PF key
+      return msg.channel.send(`found [toon] and [toon] with [dungeon]`) */
   };
 });
 
